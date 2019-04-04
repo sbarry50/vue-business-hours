@@ -1,5 +1,6 @@
 {
   "name": "vue-business-hours",
+  "description": "Vue component for selecting business hours.",
   "version": "0.1.0",
   "author": "sbarry50",
   "private": true,

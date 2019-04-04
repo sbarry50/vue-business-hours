@@ -2,6 +2,8 @@
 
 Vue component for selecting business hours.
 
+[Demo](https://codesandbox.io/s/github/sbarry50/vue-business-hours)
+
 ## Usage
 
 ```javscript
