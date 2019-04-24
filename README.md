@@ -1,23 +1,40 @@
-# vue-business-hours
+# Vue Business Hours
 
-Vue component for selecting business hours.
+Vue component for setting business hours in an administration panel. Option to use a text `<input>` and `<datalist>` component with "autocomplete" functionality for greater flexbility to define business hours. Or a `<select>` component to limit options to predetermined times in 15, 30 and 60 minute increments.
 
 [Demo](https://codesandbox.io/s/github/sbarry50/vue-business-hours)
 
 ## Usage
 
+Using defaults:
 ```javscript
- <div id="app" class="table-container">
+ <div id="app" class="business-hours-container">
     <business-hours
       v-for="(hours, day) in days"
       :key="day"
-      name="business_hours"
       :day="day"
       :hours="hours"
-      :times="times"
     ></business-hours>
   </div>
 ```
+
+Without defaults:
+```javscript
+ <div id="app" class="business-hours-container">
+    <business-hours
+      v-for="(hours, day) in days"
+      :key="day"
+      :day="day"
+      :hours="hours"
+      name="office_hours"
+      :time-increment="60"
+      type="select"
+      color="#38a89d"
+    ></business-hours>
+  </div>
+```
+
+### Data
 
 A `days` object should be supplied in the following format.
 
@@ -88,57 +105,14 @@ A `days` object should be supplied in the following format.
 }
 ```
 
-A `times` array should be supplied in the 24 hour HHmm format.
+### Properties
 
-```javascript
-[
-  '0000',
-  '0030',
-  '0100',
-  '0130',
-  '0200',
-  '0230',
-  '0300',
-  '0330',
-  '0400',
-  '0430',
-  '0500',
-  '0530',
-  '0600',
-  '0630',
-  '0700',
-  '0730',
-  '0800',
-  '0830',
-  '0900',
-  '0930',
-  '1000',
-  '1030',
-  '1100',
-  '1130',
-  '1200',
-  '1230',
-  '1300',
-  '1330',
-  '1400',
-  '1430',
-  '1500',
-  '1530',
-  '1600',
-  '1630',
-  '1700',
-  '1730',
-  '1800',
-  '1830',
-  '1900',
-  '1930',
-  '2000',
-  '2030',
-  '2100',
-  '2130',
-  '2200',
-  '2230',
-  '2300',
-  '2330'
-];
-```
+| Name           | Type   | Required | Default          | Description                                                                                              |
+| -------------- | ------ | -------- | ---------------- | -------------------------------------------------------------------------------------------------------- |
+| day            | String | yes      |                  | The day of the week. From the `days` object.                                                             |
+| hours          | Array  | yes      |                  | The opening/closing hours for the day. From the `days` object.                                           |
+| name           | String | no       | `business_hours` | The name of the key which will correspond to the saved business hours.                                   |
+| time-increment | Number | no       | `30`             | The number of minutes to increment the dropdown time options. Allowed values: `15`, `30` or `60` minutes |
+| type           | String | no       | `datalist`       | The type of input component used. Allowed values: `datalist' or 'select'                                 |
+| color          | String | no       | `#2779bd`        | The color of the toggle switch and Add hours button. Must be in hex color format leading with a `#`      |
+

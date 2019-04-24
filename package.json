@@ -1,14 +1,23 @@
 {
   "name": "vue-business-hours",
   "description": "Vue component for selecting business hours.",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "author": "sbarry50",
-  "private": true,
+  "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "build-bundle": "vue-cli-service build --target lib --name vue-business-hours ./src/components/index.js",
     "lint": "vue-cli-service lint"
   },
+  "main": "./dist/vue-business-hours.common.js",
+  "files": [
+    "dist/*",
+    "src/*",
+    "public/*",
+    "*.json",
+    "*.js"
+  ],
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.17",
     "@fortawesome/free-solid-svg-icons": "^5.8.1",

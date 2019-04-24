@@ -1,0 +1,46 @@
+<template>
+  <div>
+    <input
+      class="time-input"
+      :class="[ anyError ? 'has-error' : '']"
+      type="text"
+      :list="datalistID"
+      :placeholder="defaultText"
+      @change="inputEventHandler"
+      :value="formattedTime"
+    >
+    <datalist :id="datalistID">
+      <option v-if="isFirstRow(index)">24 hours</option>
+      <option v-for="time in filteredTimes" :key="time">{{ time | formatTime }}</option>
+      <option v-if="showMidnightOption">Midnight</option>
+    </datalist>
+    <input :name="optionName" type="hidden" :value="selected">
+  </div>
+</template>
+
+<script>
+import { formFieldMixin } from '../mixins/formFieldMixin';
+export default {
+  mixins: [formFieldMixin],
+  props: {
+    anyError: {
+      type: Boolean,
+      required: true
+    }
+  },
+  computed: {
+    formattedTime: function() {
+      return this.frontendInputFormat(this.selected);
+    },
+    datalistID: function() {
+      return this.day + '-' + this.index + '-' + this.whichTime;
+    }
+  }
+};
+</script>
+
+<style scoped>
+.time-input.has-error {
+  border: solid #e3342f 1px;
+}
+</style>
