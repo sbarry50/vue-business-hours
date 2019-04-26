@@ -79,7 +79,7 @@ if (!argv.format || argv.format === 'umd') {
       compact: true,
       file: 'dist/vue-business-hours.umd.js',
       format: 'umd',
-      name: 'VueNpmTest',
+      name: 'VueBusinessHours',
       exports: 'named',
       globals
     },
@@ -103,7 +103,7 @@ if (!argv.format || argv.format === 'iife') {
       compact: true,
       file: 'dist/vue-business-hours.min.js',
       format: 'iife',
-      name: 'VueNpmTest',
+      name: 'VueBusinessHours',
       exports: 'named',
       globals
     },
