@@ -1,16 +1,15 @@
-import Vue from 'vue';
 import BusinessHours from './BusinessHours.vue';
+import BusinessHoursDay from './BusinessHoursDay.vue';
 import BusinessHoursSelect from './BusinessHoursSelect.vue';
 import BusinessHoursDatalist from './BusinessHoursDatalist.vue';
+import { ToggleButton } from 'vue-js-toggle-button';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
-const Components = {
+export {
   BusinessHours,
+  BusinessHoursDay,
   BusinessHoursSelect,
-  BusinessHoursDatalist
+  BusinessHoursDatalist,
+  ToggleButton,
+  FontAwesomeIcon
 };
-
-Object.keys(Components).forEach(name => {
-  Vue.component(name, Components[name]);
-});
-
-export default Components;
