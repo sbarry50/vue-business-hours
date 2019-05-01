@@ -1,8 +1,7 @@
 // Import vue components
-import * as components from './components/index';
-import { helperMixin } from './mixins/helperMixin';
+import component from './components/BusinessHours.vue';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 
 library.add(faTimes);
 
@@ -10,11 +9,7 @@ library.add(faTimes);
 function install(Vue) {
   if (install.installed) return;
   install.installed = true;
-  Object.keys(components).forEach(componentName => {
-    Vue.component(componentName, components[componentName]);
-  });
-
-  Vue.mixin(helperMixin);
+  Vue.component('BusinessHours', component);
 }
 
 // Create module definition for Vue.use()
@@ -34,9 +29,13 @@ if (GlobalVue) {
   GlobalVue.use(plugin);
 }
 
-// Default export is library as a whole, registered via Vue.use()
-export default plugin;
+// Inject install function into component - allows component
+// to be registered via Vue.use() as well as Vue.component()
+component.install = install;
 
-// To allow individual component use, export components
-// each can be registered via Vue.component()
-export * from './components/index';
+// Export component by default
+export default component;
+
+// It's possible to expose named exports when writing components that can
+// also be used as directives, etc. - eg. import { RollupDemoDirective } from 'rollup-demo';
+// export const RollupDemoDirective = component;

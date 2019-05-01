@@ -3,6 +3,9 @@ import vue from 'rollup-plugin-vue';
 import buble from 'rollup-plugin-buble';
 import commonjs from 'rollup-plugin-commonjs';
 import replace from 'rollup-plugin-replace';
+import resolve from 'rollup-plugin-node-resolve';
+import builtins from 'rollup-plugin-node-builtins';
+import nodeGlobals from 'rollup-plugin-node-globals';
 import { terser } from 'rollup-plugin-terser';
 import minimist from 'minimist';
 
@@ -14,7 +17,23 @@ const baseConfig = {
     replace({
       'process.env.NODE_ENV': JSON.stringify('production')
     }),
-    commonjs(),
+    commonjs({
+      namedExports: {
+        // left-hand side can be an absolute path, a path
+        // relative to the current directory, or the name
+        // of a module in node_modules
+        'node_modules/vue-js-toggle-button/dist/index.js': ['ToggleButton']
+      }
+    }),
+    resolve({
+      only: [
+        'uniqid',
+        'vue-js-toggle-button',
+        '@fortawesome/fontawesome-svg-core',
+        '@fortawesome/free-solid-svg-icons',
+        '@fortawesome/vue-fontawesome'
+      ]
+    }),
     vue({
       css: true,
       compileTemplate: true,
@@ -22,7 +41,9 @@ const baseConfig = {
         isProduction: true
       }
     }),
-    buble()
+    buble(),
+    builtins(),
+    nodeGlobals()
   ]
 };
 
@@ -31,19 +52,11 @@ const baseConfig = {
 const external = [
   // list external dependencies, exactly the way it is written in the import statement.
   // eg. 'jquery'
-  '@fortawesome/fontawesome-svg-core',
-  '@fortawesome/free-solid-svg-icons',
-  '@fortawesome/vue-fontawesome',
-  'vue-js-toggle-button',
   'moment'
 ];
 const globals = {
   // Provide global variable names to replace your external imports
   // eg. jquery: '$'
-  '@fortawesome/fontawesome-svg-core': 'library',
-  '@fortawesome/free-solid-svg-icons': 'faTimes',
-  '@fortawesome/vue-fontawesome': 'FontAwesomeIcon',
-  'vue-js-toggle-button': 'ToggleButton',
   moment: 'moment'
 };
 
@@ -56,6 +69,7 @@ if (!argv.format || argv.format === 'es') {
     output: {
       file: 'dist/vue-business-hours.esm.js',
       format: 'esm',
+      name: 'VueBusinessHours',
       exports: 'named',
       globals
     },

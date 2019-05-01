@@ -14,7 +14,12 @@
 </template>
 
 <script>
+import BusinessHoursDay from './BusinessHoursDay.vue';
 export default {
+  name: 'BusinessHours',
+  components: {
+    BusinessHoursDay
+  },
   props: {
     days: {
       type: Object,
@@ -22,7 +27,7 @@ export default {
     },
     name: {
       type: String,
-      default: 'business_hours'
+      default: 'businessHours'
     },
     type: {
       type: String,

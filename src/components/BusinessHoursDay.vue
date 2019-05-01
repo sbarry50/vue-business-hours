@@ -111,10 +111,22 @@
 </template>
 
 <script>
-var uniqid = require('uniqid');
+import BusinessHoursSelect from './BusinessHoursSelect.vue';
+import BusinessHoursDatalist from './BusinessHoursDatalist.vue';
+import { ToggleButton } from 'vue-js-toggle-button';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { helperMixin } from '../mixins/helperMixin';
 import { validationMixin } from '../mixins/validationMixin';
+import uniqid from 'uniqid';
 export default {
-  mixins: [validationMixin],
+  name: 'BusinessHoursDay',
+  components: {
+    BusinessHoursSelect,
+    BusinessHoursDatalist,
+    ToggleButton,
+    FontAwesomeIcon
+  },
+  mixins: [helperMixin, validationMixin],
   props: {
     day: {
       type: String,

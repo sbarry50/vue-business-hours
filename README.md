@@ -1,42 +1,142 @@
 # Vue Business Hours
 
-Vue component for setting business hours in an administration panel. Option to use a text `<input>` and `<datalist>` component with "autocomplete" functionality for greater flexbility to define business hours. Or a `<select>` component to limit options to predetermined times in 15, 30 and 60 minute increments.
+Vue component for setting business hours in an administration panel. Option to use a text `<input>` and `<datalist>` component with 'autocomplete' functionality for greater flexbility to define business hours. Or a `<select>` component to limit options to predetermined times in 15, 30 and 60 minute increments.
 
 [Demo](https://codesandbox.io/s/github/sbarry50/vue-business-hours)
 
+## Install
+
+### NPM
+
+Install with NPM
+
+```bash
+npm install vue-business-hours
+```
+
+Then in your `main.js` or other entry point register as a plugin.
+
+```js
+import BusinessHours from 'vue-business-hours'
+
+Vue.use(BusinessHours)
+```
+
+Or register as a component.
+
+```js
+import BusinessHours from 'vue-business-hours'
+
+Vue.component('BusinessHours', BusinessHours)
+```
+
+### CDN
+
+You can also add this component straight to an HTML page with a `<script>` tag along with Vue and Moment.js.
+
+```html
+<script src='https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/moment@2.24.0/moment.min.js'></script>
+<script src='https://unpkg.com/vue-business-hours'></script>
+```
+
 ## Usage
 
-Using defaults:
-```javscript
- <div id="app" class="business-hours-container">
+This component can be used for regular business hours, holiday hours and/or other special hours with simple configuration changes.
+
+```html
+<div id="app">
+    <!-- default -->
+    <h2>Business Hours</h2>
+    <business-hours :days='days'></business-hours>
+
+    <!-- with options -->
+    <h2>Holiday Hours</h2>
     <business-hours
-      v-for="(hours, day) in days"
-      :key="day"
-      :day="day"
-      :hours="hours"
+    :days='holidays'
+    name='holidayHours'
+    type='select'
+    :time-increment='60'
+    color='#00af0b'
     ></business-hours>
-  </div>
+</div>
 ```
 
-Without defaults:
-```javscript
- <div id="app" class="business-hours-container">
-    <business-hours
-      v-for="(hours, day) in days"
-      :key="day"
-      :day="day"
-      :hours="hours"
-      name="office_hours"
-      :time-increment="60"
-      type="select"
-      color="#38a89d"
-    ></business-hours>
-  </div>
+In your `main.js`, `App.vue` or in `<script>` tags on your HTML page.
+
+```js
+new Vue({
+    el: "#app",
+    data() {
+        return {
+            days: yourDaysObject,
+            holidays: yourHolidaysObject
+        }
+    }
+});
 ```
+
+Here's an example in an `App.vue` file fetching the `days` object with an Axios API call.
+
+```html
+<template>
+    <h1>Business Hours</h1>
+    <section v-if="errored">
+        <p>Oops, something went wrong. Please check the console for more details.</p>
+    </section>
+    <section v-else>
+        <div v-if="loading">Loading...</div>
+        <business-hours v-else :days="businessHours"></business-hours>
+    </section>
+</template>
+
+<script>
+import axios from 'axios';
+
+export default {
+  data() {
+    return {
+      businessHours: {},
+      loading: true,
+      errored: false
+    };
+  },
+  created() {
+    this.getData('https://example.com/api/business-hours-endpoint').then(data => (this.businessHours = data));
+  },
+  methods: {
+    getData: function(endpoint) {
+      return axios
+        .get(endpoint)
+        .then(response => {
+          return response.data;
+        })
+        .catch(error => {
+          // eslint-disable-next-line
+          console.log(error);
+          this.errored = true;
+        })
+        .finally(() => (this.loading = false));
+    }
+  }
+};
+</script>
+```
+
+## Properties
+
+| Name           | Type   | Required | Default          | Description                                                                                              |
+| -------------- | ------ | -------- | ---------------- | -------------------------------------------------------------------------------------------------------- |
+| days           | Object | yes      |                  | An object with days and business hours to be set by the component. See below for format.                 |
+| name           | String | no       | `business_hours` | The name of the key which will correspond to the saved business hours.                                   |
+| time-increment | Number | no       | `30`             | The number of minutes to increment the dropdown time options. Allowed values: `15`, `30` or `60` minutes |
+| type           | String | no       | `datalist`       | The type of input component used. Allowed values: `datalist' or 'select'                                 |
+| color          | String | no       | `#2779bd`        | The color of the toggle switch and Add hours button. Must be in hex color format leading with a `#`      |
+
 
 ### Data
 
-A `days` object should be supplied in the following format.
+The `days` property should be supplied with a JSON object in the following format. The `open` and `close` time values must be in the 24 hour format with no colon. The `id` property must be unique for each entry. The `isOpen` property should only be false if both `open` and `close` are empty.
 
 ```javascript
 {
@@ -104,15 +204,4 @@ A `days` object should be supplied in the following format.
   ]
 }
 ```
-
-### Properties
-
-| Name           | Type   | Required | Default          | Description                                                                                              |
-| -------------- | ------ | -------- | ---------------- | -------------------------------------------------------------------------------------------------------- |
-| day            | String | yes      |                  | The day of the week. From the `days` object.                                                             |
-| hours          | Array  | yes      |                  | The opening/closing hours for the day. From the `days` object.                                           |
-| name           | String | no       | `business_hours` | The name of the key which will correspond to the saved business hours.                                   |
-| time-increment | Number | no       | `30`             | The number of minutes to increment the dropdown time options. Allowed values: `15`, `30` or `60` minutes |
-| type           | String | no       | `datalist`       | The type of input component used. Allowed values: `datalist' or 'select'                                 |
-| color          | String | no       | `#2779bd`        | The color of the toggle switch and Add hours button. Must be in hex color format leading with a `#`      |
 

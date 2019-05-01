@@ -19,9 +19,11 @@
 </template>
 
 <script>
+import { helperMixin } from '../mixins/helperMixin';
 import { formFieldMixin } from '../mixins/formFieldMixin';
 export default {
-  mixins: [formFieldMixin],
+  name: 'BusinessHoursDatalist',
+  mixins: [helperMixin, formFieldMixin],
   props: {
     anyError: {
       type: Boolean,
@@ -33,7 +35,15 @@ export default {
       return this.frontendInputFormat(this.selected);
     },
     datalistID: function() {
-      return this.day + '-' + this.index + '-' + this.whichTime;
+      return (
+        this.name.replace('_', '-') +
+        '-' +
+        this.day +
+        '-' +
+        this.index +
+        '-' +
+        this.whichTime
+      );
     }
   }
 };

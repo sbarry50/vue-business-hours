@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import App from './App.vue';
-import BusinessHoursComponents from '../src/entry.js';
+import BusinessHours from '../src/entry.js';
 
-Vue.use(BusinessHoursComponents);
+Vue.use(BusinessHours);
 
 Vue.config.productionTip = false;
 
