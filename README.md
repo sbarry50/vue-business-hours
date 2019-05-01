@@ -102,7 +102,8 @@ export default {
     };
   },
   created() {
-    this.getData('https://example.com/api/business-hours-endpoint').then(data => (this.businessHours = data));
+    this.getData('https://example.com/api/business-hours-endpoint')
+      .then(data => (this.businessHours = data));
   },
   methods: {
     getData: function(endpoint) {
