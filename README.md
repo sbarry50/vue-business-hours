@@ -137,7 +137,7 @@ export default {
 
 ### Data
 
-The `days` property should be supplied with a JSON object in the following format. The `open` and `close` time values must be in the 24 hour format with no colon. The `id` property must be unique for each entry. The `isOpen` property should only be false if both `open` and `close` are empty.
+The `days` property should be supplied with a JSON object in the following format. The `open` and `close` time values must be in the 24 hour format with no colon. Midnight can be designated by `2400`. `24hrs` is also valid. The `id` property must be unique for each entry. The `isOpen` property should only be false if both `open` and `close` are empty.
 
 ```javascript
 {
@@ -205,4 +205,3 @@ The `days` property should be supplied with a JSON object in the following forma
   ]
 }
 ```
-
