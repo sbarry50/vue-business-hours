@@ -126,13 +126,13 @@ export default {
 
 ## Properties
 
-| Name           | Type   | Required | Default          | Description                                                                                              |
-| -------------- | ------ | -------- | ---------------- | -------------------------------------------------------------------------------------------------------- |
-| days           | Object | yes      |                  | An object with days and business hours to be set by the component. See below for format.                 |
-| name           | String | no       | `business_hours` | The name of the key which will correspond to the saved business hours.                                   |
-| time-increment | Number | no       | `30`             | The number of minutes to increment the dropdown time options. Allowed values: `15`, `30` or `60` minutes |
-| type           | String | no       | `datalist`       | The type of input component used. Allowed values: `datalist' or 'select'                                 |
-| color          | String | no       | `#2779bd`        | The color of the toggle switch and Add hours button. Must be in hex color format leading with a `#`      |
+| Name           | Type   | Required | Default         | Description                                                                                              |
+| -------------- | ------ | -------- | --------------- | -------------------------------------------------------------------------------------------------------- |
+| days           | Object | yes      |                 | An object with days and business hours to be set by the component. See below for format.                 |
+| name           | String | no       | `businessHours` | The name of the key which will correspond to the saved business hours.                                   |
+| time-increment | Number | no       | `30`            | The number of minutes to increment the dropdown time options. Allowed values: `15`, `30` or `60` minutes |
+| type           | String | no       | `datalist`      | The type of input component used. Allowed values: `datalist' or 'select'                                 |
+| color          | String | no       | `#2779bd`       | The color of the toggle switch and Add hours button. Must be in hex color format leading with a `#`      |
 
 
 ### Data
