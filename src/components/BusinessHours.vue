@@ -57,7 +57,7 @@ export default {
 <style scoped>
 .business-hours-container {
   display: block;
-  width: 100%;
+  width: 600px;
   max-width: 600px;
   font-family: -apple-system, Helvetica, Arial, sans-serif;
   font-size: 15px;
