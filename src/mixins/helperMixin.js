@@ -2,12 +2,12 @@ import moment from 'moment';
 export const helperMixin = {
   methods: {
     titleCase: function(str) {
-      var splitStr = str.toLowerCase().split(' ');
-      for (var i = 0; i < splitStr.length; i++) {
-        splitStr[i] =
-          splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
-      }
-      return splitStr.join(' ');
+      return str
+        .split('-')
+        .map(function capitalize(part) {
+          return part.charAt(0).toUpperCase() + part.slice(1);
+        })
+        .join(' ');
     },
     frontendTimeFormat: function(value) {
       return moment(value, 'HHmm').format('hh:mm A');
