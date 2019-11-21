@@ -38,6 +38,12 @@ export const formFieldMixin = {
     timeIncrement: {
       type: Number,
       required: true
+    },
+    localization: {
+      type: Object
+    },
+    hourFormat24: {
+      type: Boolean
     }
   },
   created() {
@@ -53,7 +59,7 @@ export const formFieldMixin = {
       return this.isEven(this.inputNum) ? 'close' : 'open';
     },
     defaultText: function() {
-      return this.whichTime === 'open' ? 'Opens' : 'Closes';
+      return this.whichTime === 'open' ? this.localization.placeholderOpens : this.localization.placeholderCloses;
     },
     optionName: function() {
       return (
@@ -101,8 +107,10 @@ export const formFieldMixin = {
     }
   },
   filters: {
-    formatTime: function(time) {
-      return moment(time, 'HHmm').format('hh:mm A');
+    formatTime: function(time,hourFormat24) {
+      
+
+      return moment(time, 'HHmm').format(hourFormat24?'HH:mm':'hh:mm A');
     }
   },
   methods: {

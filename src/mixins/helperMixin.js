@@ -1,5 +1,10 @@
 import moment from 'moment';
 export const helperMixin = {
+  props: {
+    localization: {
+      type: Object
+    }
+  },
   methods: {
     titleCase: function(str) {
       return str
@@ -10,22 +15,23 @@ export const helperMixin = {
         .join(' ');
     },
     frontendTimeFormat: function(value) {
-      return moment(value, 'HHmm').format('hh:mm A');
+      
+      return moment(value, 'HHmm').format(this.hourFormat24?'HH:mm':'hh:mm A');
     },
     backendTimeFormat: function(value) {
       return moment(value, 'hh:mm A').format('HHmm');
     },
     isValidFrontendTime: function(value) {
-      return moment(value, 'hh:mm A', true).isValid();
+      return moment(value, this.hourFormat24?'HH:mm':'hh:mm A', true).isValid();
     },
     isValidBackendTime: function(value) {
       return moment(value, 'HHmm', true).isValid();
     },
     frontendInputFormat: function(value) {
       if (value === '24hrs') {
-        value = '24 hours';
+        value = this.localization.t24hours;
       } else if (value === '2400') {
-        value = 'Midnight';
+        value = this.localization.midnight;
       } else if (this.isValidBackendTime(value)) {
         value = this.frontendTimeFormat(value);
       } else if (value === '') {
@@ -35,9 +41,10 @@ export const helperMixin = {
       return value;
     },
     backendInputFormat: function(value) {
-      if (value === 'Midnight' || value === 'midnight') {
+      
+      if (value === this.localization.midnight || value === this.localization.midnight.toLowerCase()) {
         return '2400';
-      } else if (value === '24 hours' || value === '24 Hours') {
+      } else if (value.toLowerCase() === this.localization.t24hours.toLowerCase()) {
         return '24hrs';
       } else if (this.isValidFrontendTime(value)) {
         return this.backendTimeFormat(value);
