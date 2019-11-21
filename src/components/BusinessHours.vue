@@ -83,7 +83,7 @@ export default {
     },
     hourFormat24: {
       type: Boolean,
-      default: true
+      default: false
     }
   }
 };
