@@ -132,8 +132,10 @@ export default {
 | name           | String | no       | `businessHours` | The name of the key which will correspond to the saved business hours.                                   |
 | time-increment | Number | no       | `30`            | The number of minutes to increment the dropdown time options. Allowed values: `15`, `30` or `60` minutes |
 | type           | String | no       | `datalist`      | The type of input component used. Allowed values: `datalist' or 'select'                                 |
-| color          | String | no       | `#2779bd`       | The color of the toggle switch and Add hours button. Must be in hex color format leading with a `#`      |
-
+| color          | String | no       | `#2779bd`       | The color of the toggle switch and Add hours button. Must be in hex color format leading with a `#`                                                                         |
+| localization   | Object | no       | [see below](#localization)       | An object of all texts used in component |
+| switchWidth    | Number | no       | `90`            | Width of toggle switch                   |
+| hourFormat24   | Boolean| no       | `false`         | Use 24 hour format                       |
 
 ### Data
 
@@ -203,5 +205,31 @@ The `days` property should be supplied with a JSON object in the following forma
       isOpen: true
     }
   ]
+}
+```
+
+### Localization
+Set texts in the object to match your locale. Use appropriate `switchWidth` to fit your `switchOpen` and `switchClosed` text.
+```javascript
+{
+    switchOpen: 'Open',
+    switchClosed: 'Closed',
+    placeholderOpens: 'Opens',
+    placeholderCloses: 'Closes',
+    addHours: 'Add hours',
+    open: {
+        invalidInput: 'Please enter an opening time in the 12 hour format (ie. 08:00 AM). You may also enter "24 hours".',
+        greaterThanNext: 'Please enter an opening time that is before the closing time.',
+        lessThanPrevious: 'Please enter an opening time that is after the previous closing time.',
+        midnightNotLast: "Midnight can only be selected for the day's last closing time."
+    },
+    close: {
+        invalidInput: 'Please enter a closing time in the 12 hour format (ie. 05:00 PM). You may also enter "24 hours" or "Midnight".',
+        greaterThanNext: 'Please enter a closing time that is after the opening time.',
+        lessThanPrevious: 'Please enter a closing time that is before the next opening time.',
+        midnightNotLast: "Midnight can only be selected for the day's last closing time."
+    },
+    t24hours: '24 hours',
+    midnight: 'Midnight'
 }
 ```
