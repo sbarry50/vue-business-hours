@@ -11,9 +11,9 @@
             @change="toggleOpen(); resetHours(); runValidations();"
             :value="anyOpen"
             :sync="true"
-            :labels="{checked: 'Open', unchecked: 'Closed'}"
+            :labels="{checked: localization.switchOpen, unchecked: localization.switchClosed}"
             :color="color"
-            :width="75"
+            :width="switchWidth"
             :height="25"
             :font-size="12"
           />
@@ -30,6 +30,8 @@
               :time-increment="timeIncrement"
               :index="index"
               :selected-time="open"
+              :localization="localization"
+              :hour-format24="hourFormat24"
               @input-change="onChangeEventHandler('open', index, $event)"
             ></BusinessHoursSelect>
             <BusinessHoursDatalist
@@ -43,6 +45,8 @@
               :index="index"
               :selected-time="open"
               :any-error="anyError(validations[index].open)"
+              :localization="localization"
+              :hour-format24="hourFormat24"
               @input-change="onChangeEventHandler('open', index, $event)"
             ></BusinessHoursDatalist>
           </div>
@@ -62,6 +66,8 @@
               :time-increment="timeIncrement"
               :index="index"
               :selected-time="close"
+              :localization="localization"
+              :hour-format24="hourFormat24"
               @input-change="onChangeEventHandler('close', index, $event)"
             ></BusinessHoursSelect>
             <BusinessHoursDatalist
@@ -76,6 +82,8 @@
               :any-error="anyError(validations[index].close)"
               :updated-validations="validations[index].close"
               :selected-time="close"
+              :hour-format24="hourFormat24"
+              :localization="localization"
               @input-change="onChangeEventHandler('close', index, $event)"
             ></BusinessHoursDatalist>
           </div>
@@ -97,7 +105,7 @@
             class="add-hours"
             v-if="showAddButton(index)"
             @click="addRow();"
-          >Add hours</button>
+          >{{localization.addHours}}</button>
         </div>
       </div>
       <ul class="time-errors" v-if="validations[index].anyErrors">
@@ -151,6 +159,15 @@ export default {
     color: {
       type: String,
       required: true
+    },
+    localization: {
+      type: Object
+    },
+    switchWidth: {
+      type: Number
+    },
+    hourFormat24: {
+      type: Boolean
     }
   },
   computed: {
