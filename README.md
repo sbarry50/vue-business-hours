@@ -1,5 +1,7 @@
 # Vue Business Hours
 
+![npm](https://img.shields.io/npm/v/vue-business-hours)
+
 Vue component for setting business hours in an administration panel. Option to use a text `<input>` and `<datalist>` component with 'autocomplete' functionality for greater flexbility to define business hours. Or a `<select>` component to limit options to predetermined times in 15, 30 and 60 minute increments.
 
 [Demo](https://nifty-bassi-0eabe2.netlify.com/)
