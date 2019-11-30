@@ -315,7 +315,7 @@ export default {
 .flex-row /deep/ select {
   margin: 1px;
   padding: 3px 5px;
-  width: 100px;
+  width: 110px;
   height: 28px;
   font-size: 14px;
   line-height: 28px;
@@ -329,7 +329,7 @@ export default {
 }
 
 .flex-row.hours {
-  width: 100px;
+  width: 110px;
 }
 
 .flex-row.dash {

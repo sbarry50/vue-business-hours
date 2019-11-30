@@ -15,14 +15,19 @@ export const helperMixin = {
         .join(' ');
     },
     frontendTimeFormat: function(value) {
-      
-      return moment(value, 'HHmm').format(this.hourFormat24?'HH:mm':'hh:mm A');
+      return moment(value, 'HHmm').format(
+        this.hourFormat24 ? 'HH:mm' : 'hh:mm A'
+      );
     },
     backendTimeFormat: function(value) {
       return moment(value, 'hh:mm A').format('HHmm');
     },
     isValidFrontendTime: function(value) {
-      return moment(value, this.hourFormat24?'HH:mm':'hh:mm A', true).isValid();
+      return moment(
+        value,
+        this.hourFormat24 ? 'HH:mm' : 'hh:mm A',
+        true
+      ).isValid();
     },
     isValidBackendTime: function(value) {
       return moment(value, 'HHmm', true).isValid();
@@ -41,10 +46,14 @@ export const helperMixin = {
       return value;
     },
     backendInputFormat: function(value) {
-      
-      if (value === this.localization.midnight || value === this.localization.midnight.toLowerCase()) {
+      if (
+        value === this.localization.midnight ||
+        value === this.localization.midnight.toLowerCase()
+      ) {
         return '2400';
-      } else if (value.toLowerCase() === this.localization.t24hours.toLowerCase()) {
+      } else if (
+        value.toLowerCase() === this.localization.t24hours.toLowerCase()
+      ) {
         return '24hrs';
       } else if (this.isValidFrontendTime(value)) {
         return this.backendTimeFormat(value);

@@ -2,19 +2,21 @@
   <div>
     <input
       class="time-input"
-      :class="[ anyError ? 'has-error' : '']"
+      :class="[anyError ? 'has-error' : '']"
       type="text"
       :list="datalistID"
       :placeholder="defaultText"
       @change="inputEventHandler"
       :value="formattedTime"
-    >
+    />
     <datalist :id="datalistID">
-      <option v-if="isFirstRow(index)">{{localization.t24hours}}</option>
-      <option v-for="time in filteredTimes" :key="time">{{ time | formatTime(hourFormat24) }}</option>
-      <option v-if="showMidnightOption">{{localization.midnight}}</option>
+      <option v-if="isFirstRow(index)">{{ localization.t24hours }}</option>
+      <option v-for="time in filteredTimes" :key="time">{{
+        time | formatTime(hourFormat24)
+      }}</option>
+      <option v-if="showMidnightOption">{{ localization.midnight }}</option>
     </datalist>
-    <input :name="optionName" type="hidden" :value="selected">
+    <input :name="optionName" type="hidden" :value="selected" />
   </div>
 </template>
 
