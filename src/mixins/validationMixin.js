@@ -4,24 +4,16 @@ export const validationMixin = {
       validations: [],
       errors: {
         open: {
-          invalidInput:
-            'Please enter an opening time in the 12 hour format (ie. 08:00 AM). You may also enter "24 hours".',
-          greaterThanNext:
-            'Please enter an opening time that is before the closing time.',
-          lessThanPrevious:
-            'Please enter an opening time that is after the previous closing time.',
-          midnightNotLast:
-            "Midnight can only be selected for the day's last closing time."
+          invalidInput: this.localization.open.invalidInput,
+          greaterThanNext: this.localization.open.greaterThanNext,
+          lessThanPrevious: this.localization.open.lessThanPrevious,
+          midnightNotLast: this.localization.open.midnightNotLast
         },
         close: {
-          invalidInput:
-            'Please enter a closing time in the 12 hour format (ie. 05:00 PM). You may also enter "24 hours" or "Midnight".',
-          lessThanPrevious:
-            'Please enter a closing time that is after the opening time.',
-          greaterThanNext:
-            'Please enter a closing time that is before the next opening time.',
-          midnightNotLast:
-            "Midnight can only be selected for the day's last closing time."
+          invalidInput: this.localization.close.invalidInput,
+          lessThanPrevious: this.localization.close.lessThanPrevious,
+          greaterThanNext: this.localization.close.greaterThanNext,
+          midnightNotLast: this.localization.close.midnightNotLast
         }
       }
     };

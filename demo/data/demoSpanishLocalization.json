@@ -1,0 +1,21 @@
+{
+  "switchOpen": "Abierto",
+  "switchClosed": "Cerrado",
+  "placeholderOpens": "Abre",
+  "placeholderCloses": "Cierra",
+  "addHours": "Agregar horas",
+  "open": {
+    "invalidInput": "Ingrese una hora de apertura en el formato de 12 horas (es decir, 08:00 a.m.). También puede ingresar las \"24 horas\".",
+    "greaterThanNext": "Ingrese un horario de apertura que sea anterior al horario de cierre.",
+    "lessThanPrevious": "Ingrese un horario de apertura posterior al horario de cierre anterior.",
+    "midnightNotLast": "La medianoche solo se puede seleccionar para la última hora de cierre del día."
+  },
+  "close": {
+    "invalidInput": "Ingrese una hora de cierre en el formato de 12 horas (es decir, 05:00 PM). También puede ingresar \"24 horas\" o \"Medianoche\".",
+    "greaterThanNext": "Ingrese una hora de cierre que sea posterior a la hora de apertura.",
+    "lessThanPrevious": "Ingrese una hora de cierre anterior a la próxima hora de apertura.",
+    "midnightNotLast": "La medianoche solo se puede seleccionar para la última hora de cierre del día."
+  },
+  "t24hours": "24 horas",
+  "midnight": "Medianoche"
+}

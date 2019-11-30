@@ -1,6 +1,6 @@
 <template>
   <div is="transition-group" name="fade">
-    <div v-for="({open, close, id, isOpen}, index) in hours" :key="id">
+    <div v-for="({ open, close, id, isOpen }, index) in hours" :key="id">
       <div class="flex-table row" role="rowgroup">
         <div class="flex-row day" role="cell">
           <div v-if="showDay(index)">{{ titleCase(day) }}</div>
@@ -8,18 +8,25 @@
         <div class="flex-row toggle" role="cell">
           <ToggleButton
             v-if="showDay(index)"
-            @change="toggleOpen(); resetHours(); runValidations();"
+            @change="
+              toggleOpen();
+              resetHours();
+              runValidations();
+            "
             :value="anyOpen"
             :sync="true"
-            :labels="{checked: 'Open', unchecked: 'Closed'}"
+            :labels="{
+              checked: localization.switchOpen,
+              unchecked: localization.switchClosed
+            }"
             :color="color"
-            :width="75"
+            :width="switchWidth"
             :height="25"
             :font-size="12"
           />
         </div>
         <transition name="fade">
-          <div class="flex-row hours open" role="cell" v-show="isOpenToday">
+          <div class="flex-row hours open" role="cell" v-visible="isOpenToday">
             <BusinessHoursSelect
               v-if="type === 'select'"
               :name="name"
@@ -30,6 +37,8 @@
               :time-increment="timeIncrement"
               :index="index"
               :selected-time="open"
+              :localization="localization"
+              :hour-format24="hourFormat24"
               @input-change="onChangeEventHandler('open', index, $event)"
             ></BusinessHoursSelect>
             <BusinessHoursDatalist
@@ -43,15 +52,17 @@
               :index="index"
               :selected-time="open"
               :any-error="anyError(validations[index].open)"
+              :localization="localization"
+              :hour-format24="hourFormat24"
               @input-change="onChangeEventHandler('open', index, $event)"
             ></BusinessHoursDatalist>
           </div>
         </transition>
         <transition name="fade">
-          <div class="flex-row dash" role="cell" v-show="isOpenToday">-</div>
+          <div class="flex-row dash" role="cell" v-visible="isOpenToday">-</div>
         </transition>
         <transition name="fade">
-          <div class="flex-row hours close" role="cell" v-show="isOpenToday">
+          <div class="flex-row hours close" role="cell" v-visible="isOpenToday">
             <BusinessHoursSelect
               v-if="type === 'select'"
               :name="name"
@@ -62,6 +73,8 @@
               :time-increment="timeIncrement"
               :index="index"
               :selected-time="close"
+              :localization="localization"
+              :hour-format24="hourFormat24"
               @input-change="onChangeEventHandler('close', index, $event)"
             ></BusinessHoursSelect>
             <BusinessHoursDatalist
@@ -76,35 +89,41 @@
               :any-error="anyError(validations[index].close)"
               :updated-validations="validations[index].close"
               :selected-time="close"
+              :hour-format24="hourFormat24"
+              :localization="localization"
               @input-change="onChangeEventHandler('close', index, $event)"
             ></BusinessHoursDatalist>
           </div>
         </transition>
-        <div class="flex-row remove" role="cell" v-show="isOpenToday">
+        <div class="flex-row remove" role="cell" v-visible="isOpenToday">
           <button
             type="button"
             class="font-awesome-button"
             v-if="showRemoveButton()"
             @click="removeRow(index)"
           >
-            <FontAwesomeIcon icon="times" class="fa-sm"/>
+            <FontAwesomeIcon icon="times" class="fa-sm" />
           </button>
         </div>
-        <div class="flex-row add" role="cell" v-show="isOpenToday">
+        <div class="flex-row add" role="cell" v-visible="isOpenToday">
           <button
             type="button"
             :style="{ color: color }"
             class="add-hours"
             v-if="showAddButton(index)"
-            @click="addRow();"
-          >Add hours</button>
+            @click="addRow()"
+          >
+            {{ localization.addHours }}
+          </button>
         </div>
       </div>
       <ul class="time-errors" v-if="validations[index].anyErrors">
         <li
-          v-for="{whichTime, error} in activeErrors(index)"
+          v-for="{ whichTime, error } in activeErrors(index)"
           :key="whichTime + '.' + error"
-        >{{ errorMessage(whichTime, error) }}</li>
+        >
+          {{ errorMessage(whichTime, error) }}
+        </li>
       </ul>
     </div>
   </div>
@@ -151,6 +170,15 @@ export default {
     color: {
       type: String,
       required: true
+    },
+    localization: {
+      type: Object
+    },
+    switchWidth: {
+      type: Number
+    },
+    hourFormat24: {
+      type: Boolean
     }
   },
   computed: {
@@ -164,6 +192,11 @@ export default {
       return this.hours.some(hour => {
         return hour.isOpen === true;
       });
+    }
+  },
+  directives: {
+    visible: function(el, binding) {
+      el.style.visibility = binding.value ? 'visible' : 'hidden';
     }
   },
   methods: {
@@ -271,11 +304,11 @@ export default {
   align-items: center;
   margin: 0.75em 0;
   height: 45px;
+  width: 100%;
 }
 
 .flex-row {
-  width: calc(100% / 6);
-  padding-right: 7px;
+  width: 20%;
 }
 
 .flex-row /deep/ input,
@@ -291,12 +324,17 @@ export default {
   box-sizing: border-box;
 }
 
-.flex-row.toggle {
-  width: 96px;
+.flex-row.day {
+  width: 130px;
 }
+
+.flex-row.hours {
+  width: 100px;
+}
+
 .flex-row.dash {
-  padding-right: 7px;
-  width: 5px;
+  margin: 0 7px;
+  width: 4px;
 }
 
 .row-container {

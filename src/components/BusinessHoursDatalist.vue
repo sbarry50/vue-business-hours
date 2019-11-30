@@ -10,9 +10,9 @@
       :value="formattedTime"
     >
     <datalist :id="datalistID">
-      <option v-if="isFirstRow(index)">24 hours</option>
-      <option v-for="time in filteredTimes" :key="time">{{ time | formatTime }}</option>
-      <option v-if="showMidnightOption">Midnight</option>
+      <option v-if="isFirstRow(index)">{{localization.t24hours}}</option>
+      <option v-for="time in filteredTimes" :key="time">{{ time | formatTime(hourFormat24) }}</option>
+      <option v-if="showMidnightOption">{{localization.midnight}}</option>
     </datalist>
     <input :name="optionName" type="hidden" :value="selected">
   </div>
