@@ -8,7 +8,7 @@
       <business-hours :days="demoDays" :time-increment="15"></business-hours>
     </div>
     <div class="demo-component">
-      <h2>Holiday Hours</h2>
+      <h2>Holiday Hours, Select Mode</h2>
       <business-hours
         :days="demoHolidays"
         name="holidayHours"
@@ -25,22 +25,13 @@
         color="#e06c00"
       ></business-hours>
     </div>
-    <div class="demo-component">
-      <h2>Business Hours Select with Spanish Translation</h2>
-      <business-hours
-        :days="demoHolidays"
-        name="spanishHoursSelect"
-        type="select"
-        :time-increment="60"
-        color="#00af0b"
-        :localization="demoSpanishLocalization"
-        :hourFormat24="true"
-      ></business-hours>
-    </div>
     <div class="demo-component wide">
-      <h2>Business Hours with Spanish Translation</h2>
+      <h2>
+        Business Hours with Spanish Translation, 24h time format, Wider Toggle
+        Switch
+      </h2>
       <business-hours
-        :days="demoDays"
+        :days="demoDaysSpanish"
         name="spanishHoursDatalist"
         color="#6b0b9d"
         :localization="demoSpanishLocalization"
@@ -53,6 +44,7 @@
 
 <script>
 import demoDays from './data/demoDays';
+import demoDaysSpanish from './data/demoDaysSpanish';
 import demoHolidays from './data/demoHolidays';
 import demoDaysErrors from './data/demoDaysErrors';
 import demoSpanishLocalization from './data/demoSpanishLocalization';
@@ -61,6 +53,7 @@ export default {
   data() {
     return {
       demoDays: demoDays,
+      demoDaysSpanish: demoDaysSpanish,
       demoHolidays: demoHolidays,
       demoDaysErrors: demoDaysErrors,
       demoSpanishLocalization: demoSpanishLocalization
