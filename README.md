@@ -127,7 +127,7 @@ Here's an example in an `App.vue` file fetching the `days` object with an Axios 
 </script>
 ```
 
-The width of the component is set by its containing element's width. For default usage, we recommend setting the containing element to 675px. If you adjust the toggle switch via the `switchWidth` prop to a value greater than the 90px default, you may need to set the containing element to wider than 675px.
+The width of the component is set by its containing element's width. For default usage, we recommend setting the containing element to 660px. If you adjust the toggle switch via the `switchWidth` prop to a value greater than the 90px default, you may need to set the containing element to wider than 660px.
 
 ## Properties
 
