@@ -9,9 +9,12 @@
       :time-increment="timeIncrement"
       :type="type"
       :color="color"
-      :localization="localization"
-      :switch-width="switchWidth"
-      :hour-format24="hourFormat24"
+      :open-text="openText"
+      :closed-text="closedText"
+      :opens-text="opensText"
+      :closes-text="closesText"
+      :time-format="timeFormat"
+      v-on="{change: handleFieldChange(day)}"
     ></business-hours-day>
   </div>
 </template>
@@ -20,8 +23,29 @@
 import BusinessHoursDay from './BusinessHoursDay.vue';
 export default {
   name: 'BusinessHours',
+  data() {
+    return {
+      model: {}
+    }
+  },
+  created() {
+    this.model = Object.assign({}, this.days);
+  },
   components: {
     BusinessHoursDay
+  },
+  methods: {
+    handleFieldChange(day) {
+      return hours => {
+        this.model = Object.assign(this.model, {[day]: hours});
+       
+      }
+    }
+  },
+  watch: {
+    model(businessHours) {
+       this.$emit('change', businessHours);
+    }
   },
   props: {
     days: {
@@ -53,45 +77,29 @@ export default {
         return value.charAt(0) === '#' ? true : false;
       }
     },
-    localization: {
-      type: Object,
-      default: () => ({
-        switchOpen: 'Open',
-        switchClosed: 'Closed',
-        placeholderOpens: 'Opens',
-        placeholderCloses: 'Closes',
-        addHours: 'Add hours',
-        open: {
-          invalidInput:
-            'Please enter an opening time in the 12 hour format (ie. 08:00 AM). You may also enter "24 hours".',
-          greaterThanNext:
-            'Please enter an opening time that is before the closing time.',
-          lessThanPrevious:
-            'Please enter an opening time that is after the previous closing time.',
-          midnightNotLast:
-            "Midnight can only be selected for the day's last closing time."
-        },
-        close: {
-          invalidInput:
-            'Please enter a closing time in the 12 hour format (ie. 05:00 PM). You may also enter "24 hours" or "Midnight".',
-          greaterThanNext:
-            'Please enter a closing time that is after the opening time.',
-          lessThanPrevious:
-            'Please enter a closing time that is before the next opening time.',
-          midnightNotLast:
-            "Midnight can only be selected for the day's last closing time."
-        },
-        t24hours: '24 hours',
-        midnight: 'Midnight'
-      })
+    openText: {
+      type: String,
+      default: 'Open'
     },
-    switchWidth: {
+    closedText: {
+      type: String,
+      default: 'Closed'
+    },
+    opensText: {
+      type: String,
+      default: 'Open'
+    },
+    closesText: {
+      type: String,
+      default: 'Closes'
+    },
+    addHoursText: {
+      type: String,
+      default: 'Add Hours'
+    },
+    timeFormat: {
       type: Number,
-      default: 90
-    },
-    hourFormat24: {
-      type: Boolean,
-      default: false
+      default: 12
     }
   }
 };
@@ -100,8 +108,8 @@ export default {
 <style scoped>
 .business-hours-container {
   display: block;
-  width: 100%;
-  /* max-width: 630px; */
+  width: 600px;
+  max-width: 600px;
   font-family: -apple-system, Helvetica, Arial, sans-serif;
   font-size: 15px;
   color: #3d4852;
