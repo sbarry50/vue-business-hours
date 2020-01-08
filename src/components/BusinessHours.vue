@@ -82,7 +82,16 @@ export default {
             "Midnight can only be selected for the day's last closing time."
         },
         t24hours: '24 hours',
-        midnight: 'Midnight'
+        midnight: 'Midnight',
+        days: {
+          monday: 'Monday',
+          tuesday: 'Tuesday',
+          wednesday: 'Wednesday',
+          thursday: 'Thursday',
+          friday: 'Friday',
+          saturday: 'Saturday',
+          sunday: 'Sunday'
+        }
       })
     },
     switchWidth: {
