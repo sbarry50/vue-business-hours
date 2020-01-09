@@ -17,5 +17,14 @@
     "midnightNotLast": "La medianoche solo se puede seleccionar para la última hora de cierre del día."
   },
   "t24hours": "24 horas",
-  "midnight": "Medianoche"
+  "midnight": "Medianoche",
+  "days": {
+    "sunday": "Domingo",
+    "monday": "Lunes",
+    "tuesday": "Martes",
+    "wednesday": "Miércoles",
+    "thursday": "Jueves",
+    "friday": "Viernes",
+    "saturday": "Sábado"
+  }
 }

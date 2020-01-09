@@ -148,6 +148,8 @@ The width of the component is set by its containing element's width. For default
 
 The `days` property should be supplied with a JSON object in the following format. The `open` and `close` time values must be in the 24 hour format with no colon. Midnight can be designated by `2400`. `24hrs` is also valid. The `id` property must be unique for each entry. The `isOpen` property should only be false if both `open` and `close` are empty.
 
+Please note that the data object days keys must match the defaults found in the localization object [below](#localization). The most common holidays that US businesses usually close or have special hours have been included. If you wish to add any additional holidays or special days you will have to add them in a localization file, match their keys to the ones in your data object and pass them to the `localization` prop.
+
 ```javascript
 {
   sunday: [
@@ -219,6 +221,8 @@ The `days` property should be supplied with a JSON object in the following forma
 
 Set texts in the object to match your locale. Use appropriate `switchWidth` to fit your `switchOpen` and `switchClosed` text.
 
+Please note that if you only intend on changing a few values such as adding holidays not found below, you must still include all the other defaults or they won't display. It is recommended to start your localization file by copying/pasting the defaults below and change/add values from there.
+
 ```javascript
 {
     switchOpen: 'Open',
@@ -239,6 +243,29 @@ Set texts in the object to match your locale. Use appropriate `switchWidth` to f
         midnightNotLast: "Midnight can only be selected for the day's last closing time."
     },
     t24hours: '24 hours',
-    midnight: 'Midnight'
+    midnight: 'Midnight',
+    days: {
+        monday: 'Monday',
+        tuesday: 'Tuesday',
+        wednesday: 'Wednesday',
+        thursday: 'Thursday',
+        friday: 'Friday',
+        saturday: 'Saturday',
+        sunday: 'Sunday',
+        newYearsEve: 'New Year\'s Eve', // prettier-ignore
+        newYearsDay: 'New Year\'s Day', // prettier-ignore
+        martinLutherKingJrDay: 'Martin Luther King, Jr. Day',
+        presidentsDay: 'Presidents\' Day', // prettier-ignore
+        easter: 'Easter',
+        memorialDay: 'Memorial Day',
+        independenceDay: 'Independence Day',
+        fourthOfJuly: '4th of July',
+        laborDay: 'Labor Day',
+        columbusDay: 'Columbus Day',
+        veteransDay: 'Veterans Day',
+        thanksgivingDay: 'Thanksgiving Day',
+        christmasEve: 'Christmas Eve',
+        christmas: 'Christmas',
+    }
 }
 ```

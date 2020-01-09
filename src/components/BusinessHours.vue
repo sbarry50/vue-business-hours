@@ -82,7 +82,30 @@ export default {
             "Midnight can only be selected for the day's last closing time."
         },
         t24hours: '24 hours',
-        midnight: 'Midnight'
+        midnight: 'Midnight',
+        days: {
+          monday: 'Monday',
+          tuesday: 'Tuesday',
+          wednesday: 'Wednesday',
+          thursday: 'Thursday',
+          friday: 'Friday',
+          saturday: 'Saturday',
+          sunday: 'Sunday',
+          newYearsEve: 'New Year\'s Eve', // prettier-ignore
+          newYearsDay: 'New Year\'s Day', // prettier-ignore
+          martinLutherKingJrDay: 'Martin Luther King, Jr. Day',
+          presidentsDay: 'Presidents\' Day', // prettier-ignore
+          easter: 'Easter',
+          memorialDay: 'Memorial Day',
+          independenceDay: 'Independence Day',
+          fourthOfJuly: '4th of July',
+          laborDay: 'Labor Day',
+          columbusDay: 'Columbus Day',
+          veteransDay: 'Veterans Day',
+          thanksgiving: 'Thanksgiving',
+          christmasEve: 'Christmas Eve',
+          christmas: 'Christmas'
+        }
       })
     },
     switchWidth: {
