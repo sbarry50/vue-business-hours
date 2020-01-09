@@ -7,7 +7,7 @@
       "isOpen": true
     }
   ],
-  "christmas-eve": [
+  "christmasEve": [
     {
       "open": "0700",
       "close": "1700",
@@ -23,7 +23,7 @@
       "isOpen": false
     }
   ],
-  "memorial-day": [
+  "memorialDay": [
     {
       "open": "0800",
       "close": "1200",

@@ -1,5 +1,5 @@
 {
-  "domingo": [
+  "sunday": [
     {
       "open": "",
       "close": "",
@@ -7,7 +7,7 @@
       "isOpen": false
     }
   ],
-  "lunes": [
+  "monday": [
     {
       "open": "0800",
       "close": "1700",
@@ -15,7 +15,7 @@
       "isOpen": true
     }
   ],
-  "martes": [
+  "tuesday": [
     {
       "open": "0800",
       "close": "1700",
@@ -23,7 +23,7 @@
       "isOpen": true
     }
   ],
-  "miércoles": [
+  "wednesday": [
     {
       "open": "0800",
       "close": "1700",
@@ -31,7 +31,7 @@
       "isOpen": true
     }
   ],
-  "jueves": [
+  "thursday": [
     {
       "open": "0800",
       "close": "0300",
@@ -39,7 +39,7 @@
       "isOpen": true
     }
   ],
-  "viernes": [
+  "friday": [
     {
       "open": "0800",
       "close": "asdda",
@@ -53,7 +53,7 @@
       "isOpen": true
     }
   ],
-  "sábado": [
+  "saturday": [
     {
       "open": "24hrs",
       "close": "24hrs",

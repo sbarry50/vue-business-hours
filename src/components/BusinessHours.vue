@@ -90,7 +90,21 @@ export default {
           thursday: 'Thursday',
           friday: 'Friday',
           saturday: 'Saturday',
-          sunday: 'Sunday'
+          sunday: 'Sunday',
+          newYearsEve: 'New Year\'s Eve', // prettier-ignore
+          newYearsDay: 'New Year\'s Day', // prettier-ignore
+          martinLutherKingJrDay: 'Martin Luther King, Jr. Day',
+          presidentsDay: 'Presidents\' Day', // prettier-ignore
+          easter: 'Easter',
+          memorialDay: 'Memorial Day',
+          independenceDay: 'Independence Day',
+          fourthOfJuly: '4th of July',
+          laborDay: 'Labor Day',
+          columbusDay: 'Columbus Day',
+          veteransDay: 'Veterans Day',
+          thanksgiving: 'Thanksgiving',
+          christmasEve: 'Christmas Eve',
+          christmas: 'Christmas'
         }
       })
     },
