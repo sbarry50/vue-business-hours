@@ -145,6 +145,14 @@ export default {
     ToggleButton,
     FontAwesomeIcon
   },
+  watch: {
+    hours(val) {
+      this.$emit('change', val);
+    },
+    day(val) {
+      this.$emit('change', val);
+    }
+  },
   mixins: [helperMixin, validationMixin],
   props: {
     day: {

@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Added localization for day names - Issue [#9](https://github.com/sbarry50/vue-business-hours/issues/9) PR [#10](https://github.com/sbarry50/vue-business-hours/pull/10) Thanks [Graker](https://github.com/graker)
+- Added event emitter to access updated values - Issue [#6](https://github.com/sbarry50/vue-business-hours/issues/6) PR [#8](Added "change" emit to Business Hours day) Thanks [wilokecom](https://github.com/wilokecom)
 
 ## [1.3.0] - 2019-11-29
 

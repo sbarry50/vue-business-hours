@@ -24,7 +24,6 @@ import { helperMixin } from '../mixins/helperMixin';
 import { formFieldMixin } from '../mixins/formFieldMixin';
 export default {
   name: 'BusinessHoursSelect',
-
   mixins: [helperMixin, formFieldMixin]
 };
 </script>

@@ -269,3 +269,11 @@ Please note that if you only intend on changing a few values such as adding holi
     }
 }
 ```
+
+### Event Emitter
+
+Vue Business Hours comes with an event emitter that allows you to access updated values.
+
+```html
+<business-hours :days="{myDay}" @change="updateValue" />
+```
