@@ -133,16 +133,18 @@ The width of the component is set by its containing element's width. For default
 
 ## Properties
 
-| Name           | Type    | Required | Default                    | Description                                                                                              |
-| -------------- | ------- | -------- | -------------------------- | -------------------------------------------------------------------------------------------------------- |
-| days           | Object  | yes      |                            | An object with days and business hours to be set by the component. See below for format.                 |
-| name           | String  | no       | `businessHours`            | The name of the key which will correspond to the saved business hours.                                   |
-| time-increment | Number  | no       | `30`                       | The number of minutes to increment the dropdown time options. Allowed values: `15`, `30` or `60` minutes |
-| type           | String  | no       | `datalist`                 | The type of input component used. Allowed values: `datalist' or 'select'                                 |
-| color          | String  | no       | `#2779bd`                  | The color of the toggle switch and Add hours button. Must be in hex color format leading with a`#`       |
-| localization   | Object  | no       | [see below](#localization) | An object of all texts used in component                                                                 |
-| switchWidth    | Number  | no       | `90`                       | Width of toggle switch                                                                                   |
-| hourFormat24   | Boolean | no       | `false`                    | Use 24 hour format                                                                                       |
+| Name          | Type    | Required | Default                    | Description                                                                                              |
+| ------------- | ------- | -------- | -------------------------- | -------------------------------------------------------------------------------------------------------- |
+| days          | Object  | yes      |                            | An object with days and business hours to be set by the component. See below for format.                 |
+| name          | String  | no       | `businessHours`            | The name of the key which will correspond to the saved business hours.                                   |
+| timeIncrement | Number  | no       | `30`                       | The number of minutes to increment the dropdown time options. Allowed values: `15`, `30` or `60` minutes |
+| type          | String  | no       | `datalist`                 | The type of input component used. Allowed values: `datalist' or 'select'                                 |
+| color         | String  | no       | `#2779bd`                  | The color of the toggle switch and Add hours button. Must be in hex color format leading with a`#`       |
+| localization  | Object  | no       | [see below](#localization) | An object of all texts used in component                                                                 |
+| switchWidth   | Number  | no       | `90`                       | Width of toggle switch                                                                                   |
+| hourFormat24  | Boolean | no       | `false`                    | Use 24 hour format                                                                                       |
+
+**Reminder**: Prop names [should always use kebab-case](https://vuejs.org/v2/style-guide/#Prop-name-casing-strongly-recommended) in templates and JSX.
 
 ### Data
 

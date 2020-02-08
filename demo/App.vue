@@ -19,11 +19,7 @@
     </div>
     <div class="demo-component">
       <h2>Business Hours with Errors</h2>
-      <business-hours
-        :days="demoDaysErrors"
-        name="specialHours"
-        color="#e06c00"
-      ></business-hours>
+      <business-hours :days="demoDaysErrors" name="specialHours" color="#e06c00"></business-hours>
     </div>
     <div class="demo-component wide">
       <h2>
@@ -35,8 +31,8 @@
         name="spanishHoursDatalist"
         color="#6b0b9d"
         :localization="demoSpanishLocalization"
-        :switchWidth="150"
-        :hourFormat24="true"
+        :switch-width="150"
+        :hour-format24="true"
       ></business-hours>
     </div>
   </div>
