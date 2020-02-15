@@ -112,18 +112,14 @@
             class="add-hours"
             v-if="showAddButton(index)"
             @click="addRow()"
-          >
-            {{ localization.addHours }}
-          </button>
+          >{{ localization.addHours }}</button>
         </div>
       </div>
       <ul class="time-errors" v-if="validations[index].anyErrors">
         <li
           v-for="{ whichTime, error } in activeErrors(index)"
           :key="whichTime + '.' + error"
-        >
-          {{ errorMessage(whichTime, error) }}
-        </li>
+        >{{ errorMessage(whichTime, error) }}</li>
       </ul>
     </div>
   </div>
@@ -144,14 +140,6 @@ export default {
     BusinessHoursDatalist,
     ToggleButton,
     FontAwesomeIcon
-  },
-  watch: {
-    hours(val) {
-      this.$emit('change', val);
-    },
-    day(val) {
-      this.$emit('change', val);
-    }
   },
   mixins: [helperMixin, validationMixin],
   props: {
@@ -215,6 +203,7 @@ export default {
         this.hours.splice(1);
         this.hours[0].open = this.hours[0].close = value;
         this.runValidations();
+        this.updateHours();
         return;
       }
 
@@ -225,6 +214,7 @@ export default {
       ) {
         this.hours[index].open = this.hours[index].close = value;
         this.runValidations();
+        this.updateHours();
         return;
       }
 
@@ -236,11 +226,13 @@ export default {
       ) {
         this.removeRow(index);
         this.runValidations();
+        this.updateHours();
         return;
       }
 
       this.hours[index][whichTime] = value;
       this.runValidations();
+      this.updateHours();
     },
     inputNum: function(whichTime, index) {
       if (whichTime === 'open') {
@@ -255,6 +247,7 @@ export default {
     resetHours: function() {
       this.hours.splice(1);
       this.hours[0].open = this.hours[0].close = '';
+      this.updateHours();
     },
     addRow: function() {
       this.hours.push({
@@ -264,10 +257,12 @@ export default {
         isOpen: true
       });
       this.runValidations();
+      this.updateHours();
     },
     removeRow: function(index) {
       this.hours.splice(index, 1);
       this.runValidations();
+      this.updateHours();
     },
     showDay: function(index) {
       return index > 0 ? false : true;
@@ -300,6 +295,10 @@ export default {
         this.validations[index].anyErrors === false
         ? true
         : false;
+    },
+    updateHours: function() {
+      const updatedHours = { [this.day]: this.hours };
+      this.$emit('hours-change', updatedHours);
     }
   }
 };

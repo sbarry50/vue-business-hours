@@ -2,6 +2,7 @@
   <div class="business-hours-container">
     <business-hours-day
       v-for="(hours, day) in days"
+      @hours-change="hoursChange"
       :key="day"
       :day="day"
       :hours="hours"
@@ -115,6 +116,11 @@ export default {
     hourFormat24: {
       type: Boolean,
       default: false
+    }
+  },
+  methods: {
+    hoursChange: function(val) {
+      this.$emit('updated-hours', val);
     }
   }
 };

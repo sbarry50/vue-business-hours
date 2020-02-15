@@ -274,8 +274,32 @@ Please note that if you only intend on changing a few values such as adding holi
 
 ### Event Emitter
 
-Vue Business Hours comes with an event emitter that allows you to access updated values.
+Vue Business Hours comes with an event emitter `@updated-hours` that allows you to access the updated values whenever hours are added, removed, reset or changed in the component.
+
+Example usage in `App.vue`:
 
 ```html
-<business-hours :days="{myDay}" @change="updateValue" />
+<template>
+  <business-hours :days="days" @updated-hours="updatedHours"></business-hours>
+</template>
+
+<script>
+  import yourDaysObject from './path/to/yourDaysObject';
+
+  export default {
+    data() {
+      return {
+        days: yourDaysObject,
+      };
+    },
+    methods: {
+      updatedHours: function(val) {
+        // do whatever you want here
+        console.log(val);
+      }
+    }
+  };
+</script>
 ```
+
+Check out the last example in the [demo](https://nifty-bassi-0eabe2.netlify.com/) to see this in action.
