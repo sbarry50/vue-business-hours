@@ -19,7 +19,11 @@
     </div>
     <div class="demo-component">
       <h2>Business Hours with Errors</h2>
-      <business-hours :days="demoDaysErrors" name="specialHours" color="#e06c00"></business-hours>
+      <business-hours
+        :days="demoDaysErrors"
+        name="specialHours"
+        color="#e06c00"
+      ></business-hours>
     </div>
     <div class="demo-component wide">
       <h2>
@@ -37,10 +41,12 @@
     </div>
     <div class="demo-component">
       <h2>Business Hours w/ Event Emitter</h2>
-      <p>
-        <em>Open your console and update hours in the component to see the events firing.</em>
-      </p>
-      <business-hours :days="demoDaysEmit" @updated-hours="updatedHours"></business-hours>
+      <!-- prettier-ignore -->
+      <p><em>Open your console and update hours in the component to see the events firing.</em></p>
+      <business-hours
+        :days="demoDaysEmit"
+        @updated-hours="updatedHours"
+      ></business-hours>
     </div>
   </div>
 </template>
