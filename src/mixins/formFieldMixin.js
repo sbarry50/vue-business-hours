@@ -102,7 +102,7 @@ export const formFieldMixin = {
   },
   filters: {
     formatTime: function(time) {
-      return moment(time, 'HHmm').format('hh:mm A');
+      return moment(time, 'HHmm').format('HH:mm');
     }
   },
   methods: {

@@ -49,6 +49,7 @@ export const validationMixin = {
     isValidInput: function(input) {
       return (
         this.isValidBackendTime(input) ||
+        input === '0000' ||
         input === '2400' ||
         input === '24hrs' ||
         input === ''
