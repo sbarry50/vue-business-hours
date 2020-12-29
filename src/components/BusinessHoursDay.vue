@@ -35,6 +35,7 @@
               :day="day"
               :hours="hours"
               :time-increment="timeIncrement"
+              :interval-limit="intervalLimit"
               :index="index"
               :selected-time="open"
               :localization="localization"
@@ -49,6 +50,7 @@
               :day="day"
               :hours="hours"
               :time-increment="timeIncrement"
+              :interval-limit="intervalLimit"
               :index="index"
               :selected-time="open"
               :any-error="anyError(validations[index].open)"
@@ -71,6 +73,7 @@
               :day="day"
               :hours="hours"
               :time-increment="timeIncrement"
+              :interval-limit="intervalLimit"
               :index="index"
               :selected-time="close"
               :localization="localization"
@@ -85,6 +88,7 @@
               :day="day"
               :hours="hours"
               :time-increment="timeIncrement"
+              :interval-limit="intervalLimit"
               :index="index"
               :any-error="anyError(validations[index].close)"
               :updated-validations="validations[index].close"
@@ -161,6 +165,10 @@ export default {
     },
     type: {
       type: String,
+      required: true
+    },
+    intervalLimit: {
+      type: Number,
       required: true
     },
     color: {
@@ -272,6 +280,7 @@ export default {
     },
     showAddButton: function(index) {
       return this.hours.length === index + 1 &&
+        this.intervalLimit > index + 1 &&
         this.hours[index].open !== '' &&
         this.hours[index].close !== '' &&
         this.hours[index].open !== '24hrs' &&
