@@ -10,7 +10,7 @@
       :value="formattedTime"
     />
     <datalist :id="datalistID">
-      <option v-if="isFirstRow(index)">{{ localization.t24hours }}</option>
+      <option v-if="isFirstRow(index) && localization.t24hours">{{ localization.t24hours }}</option>
       <option v-for="time in filteredTimes" :key="time">{{
         time | formatTime(hourFormat24)
       }}</option>

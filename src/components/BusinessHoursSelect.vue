@@ -3,7 +3,7 @@
     <option v-show="isFirstRow(index) && onlyOneRow(hours)" value>{{
       defaultText
     }}</option>
-    <option v-show="isFirstRow(index)" value="24hrs">{{
+    <option v-show="isFirstRow(index) && localization.t24hours" value="24hrs">{{
       localization.t24hours
     }}</option>
     <option
