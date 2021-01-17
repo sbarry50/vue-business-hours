@@ -59,6 +59,7 @@ This component can be used for regular business hours, holiday hours and/or othe
     name="holidayHours"
     type="select"
     :time-increment="60"
+    :interval-limit="2"
     color="#00af0b"
   ></business-hours>
 </div>

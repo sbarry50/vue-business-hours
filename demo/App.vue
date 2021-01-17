@@ -5,7 +5,7 @@
     <a href="https://github.com/sbarry50/vue-business-hours">Github</a>
     <div class="demo-component">
       <h2>Business Hours</h2>
-      <business-hours :days="demoDays" :time-increment="15"></business-hours>
+      <business-hours :days="demoDays" :time-increment="15" :interval-limit="2"></business-hours>
     </div>
     <div class="demo-component">
       <h2>Holiday Hours, Select Mode</h2>

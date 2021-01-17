@@ -8,6 +8,7 @@
       :hours="hours"
       :name="name"
       :time-increment="timeIncrement"
+      :interval-limit="intervalLimit"
       :type="type"
       :color="color"
       :localization="localization"
@@ -46,6 +47,10 @@ export default {
       validator: function(value) {
         return [15, 30, 60].indexOf(value) !== -1;
       }
+    },
+    intervalLimit: {
+       type: Number,
+       default: 2
     },
     color: {
       type: String,
