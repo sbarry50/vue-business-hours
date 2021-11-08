@@ -46,7 +46,7 @@ export const formFieldMixin = {
       type: Boolean
     }
   },
-  created() {
+  mounted() {
     this.times = this.generateTimes(this.timeIncrement);
   },
   watch: {
@@ -60,30 +60,30 @@ export const formFieldMixin = {
     },
     defaultText: function() {
       return this.whichTime === 'open'
-        ? this.localization.placeholderOpens
-        : this.localization.placeholderCloses;
+          ? this.localization.placeholderOpens
+          : this.localization.placeholderCloses;
     },
     optionName: function() {
       return (
-        this.name +
-        '[' +
-        this.day +
-        '][' +
-        this.index +
-        '][' +
-        this.whichTime +
-        ']'
+          this.name +
+          '[' +
+          this.day +
+          '][' +
+          this.index +
+          '][' +
+          this.whichTime +
+          ']'
       );
     },
     filteredTimes: function() {
       let prevTime = this.getPrevious(this.hours, this.index, this.inputNum),
-        nextTime = this.getNext(
-          this.hours,
-          this.index,
-          this.inputNum,
-          this.totalInputs
-        ),
-        filteredTimes = this.times;
+          nextTime = this.getNext(
+              this.hours,
+              this.index,
+              this.inputNum,
+              this.totalInputs
+          ),
+          filteredTimes = this.times;
 
       if (!this.isFirstRow(this.index) && prevTime === '') {
         prevTime = this.getPrevious(this.hours, this.index, this.inputNum - 1);
@@ -102,9 +102,9 @@ export const formFieldMixin = {
     },
     showMidnightOption: function() {
       return (
-        this.isLastRow(this.index, this.hours) &&
-        this.whichTime === 'close' &&
-        this.hours[this.index].close !== '24hrs'
+          this.isLastRow(this.index, this.hours) &&
+          this.whichTime === 'close' &&
+          this.hours[this.index].close !== '24hrs'
       );
     }
   },
@@ -119,21 +119,23 @@ export const formFieldMixin = {
     },
     generateTimes: function(timeIncrement) {
       let currentTime = '0000',
-        times = [];
+          times = [];
 
-      do {
+      while (!times.includes(currentTime)) {
         times.push(currentTime);
         currentTime = moment(currentTime, 'HHmm')
-          .add(timeIncrement, 'minutes')
-          .format('HHmm');
-      } while (false);
+            .add(timeIncrement, 'minutes')
+            .format('HHmm');
+      }
+
+      console.log(times)
 
       return times;
     },
     getFiltered: function(when, adjacentTime, collection) {
       if (
-        this.isLastInput(this.inputNum, this.totalInputs) &&
-        this.hours[this.index].open === ''
+          this.isLastInput(this.inputNum, this.totalInputs) &&
+          this.hours[this.index].open === ''
       ) {
         collection = collection.filter(value => value > adjacentTime);
         collection.shift();
