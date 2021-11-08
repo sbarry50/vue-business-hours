@@ -126,7 +126,7 @@ export const formFieldMixin = {
         currentTime = moment(currentTime, 'HHmm')
           .add(timeIncrement, 'minutes')
           .format('HHmm');
-      } while (currentTime !== '0000');
+      } while (false);
 
       return times;
     },
