@@ -120,13 +120,12 @@ export const formFieldMixin = {
     generateTimes: function(timeIncrement) {
       let currentTime = '0000',
         times = [];
-
-      do {
+      while (!times.includes(currentTime)) {
         times.push(currentTime);
         currentTime = moment(currentTime, 'HHmm')
           .add(timeIncrement, 'minutes')
           .format('HHmm');
-      } while (currentTime !== '0000');
+      }
 
       return times;
     },
