@@ -128,8 +128,6 @@ export const formFieldMixin = {
             .format('HHmm');
       }
 
-      console.log(times)
-
       return times;
     },
     getFiltered: function(when, adjacentTime, collection) {
